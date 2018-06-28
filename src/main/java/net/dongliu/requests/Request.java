@@ -8,6 +8,8 @@ import java.security.KeyStore;
 import java.util.Collection;
 import java.util.Map;
 
+import net.dongliu.requests.auth.Auth;
+import net.dongliu.requests.auth.BasicAuth;
 import org.jetbrains.annotations.Nullable;
 
 import net.dongliu.requests.body.RequestBody;
@@ -39,7 +41,7 @@ public class Request implements Serializable {
     private final boolean verify;
     @Nullable
     private final KeyStore keyStore;
-    private final BasicAuth basicAuth;
+    private final Auth auth;
     @Nullable
     private final SessionContext sessionContext;
     private final URL url;
@@ -60,7 +62,7 @@ public class Request implements Serializable {
         compress = builder.compress;
         verify = builder.verify;
         keyStore = builder.keyStore;
-        basicAuth = builder.basicAuth;
+        auth = builder.auth;
         sessionContext = builder.sessionContext;
         keepAlive = builder.keepAlive;
         this.url = builder.url;
@@ -133,8 +135,8 @@ public class Request implements Serializable {
         return keyStore;
     }
 
-    public BasicAuth getBasicAuth() {
-        return basicAuth;
+    public Auth getAuth() {
+        return auth;
     }
 
     @Nullable

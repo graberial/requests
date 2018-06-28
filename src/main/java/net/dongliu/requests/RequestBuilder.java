@@ -1,5 +1,8 @@
 package net.dongliu.requests;
 
+import net.dongliu.requests.auth.Auth;
+import net.dongliu.requests.auth.BasicAuth;
+import net.dongliu.requests.auth.BearerAuth;
 import net.dongliu.requests.body.Part;
 import net.dongliu.requests.body.RequestBody;
 import net.dongliu.requests.exception.RequestsException;
@@ -40,7 +43,7 @@ public final class RequestBuilder {
     int maxRedirectCount = 5;
     boolean compress = true;
     boolean verify = true;
-    BasicAuth basicAuth;
+    Auth auth;
     @Nullable
     SessionContext sessionContext;
     boolean keepAlive = true;
@@ -66,7 +69,7 @@ public final class RequestBuilder {
         maxRedirectCount = request.getMaxRedirectCount();
         compress = request.isCompress();
         verify = request.isVerify();
-        basicAuth = request.getBasicAuth();
+        auth = request.getAuth();
         sessionContext = request.getSessionContext();
         keepAlive = request.isKeepAlive();
         keyStore = request.getKeyStore();
@@ -371,7 +374,7 @@ public final class RequestBuilder {
      * Set http basicAuth by BasicAuth(DigestAuth/NTLMAuth not supported now)
      */
     public RequestBuilder basicAuth(String user, String password) {
-        this.basicAuth = new BasicAuth(user, password);
+        this.auth = new BasicAuth(user, password);
         return this;
     }
 
@@ -379,7 +382,17 @@ public final class RequestBuilder {
      * Set http basicAuth by BasicAuth(DigestAuth/NTLMAuth not supported now)
      */
     public RequestBuilder basicAuth(BasicAuth basicAuth) {
-        this.basicAuth = basicAuth;
+        this.auth = basicAuth;
+        return this;
+    }
+
+    public RequestBuilder bearer(String token) {
+        this.auth = new BearerAuth(token);
+        return this;
+    }
+
+    public RequestBuilder bearer(BearerAuth bearerAuth) {
+        this.auth = bearerAuth;
         return this;
     }
 
