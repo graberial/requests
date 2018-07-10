@@ -386,12 +386,12 @@ public final class RequestBuilder {
         return this;
     }
 
-    public RequestBuilder bearer(String token) {
+    public RequestBuilder bearerAuth(String token) {
         this.auth = new BearerAuth(token);
         return this;
     }
 
-    public RequestBuilder bearer(BearerAuth bearerAuth) {
+    public RequestBuilder bearerAuth(BearerAuth bearerAuth) {
         this.auth = bearerAuth;
         return this;
     }

@@ -93,7 +93,7 @@ public class RequestsTest {
     public void testBearerAuth() {
         String token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJyIl0sImV4cCI6MTUzMDIxNzI4OSwianRpIjoiM2I1Zjk5MjktNzU3OS00ODI1LWJjN2ItOWJhZjY2YTEyNTI2IiwiY2xpZW50X2lkIjoieHpsaWJ0ZXN0IiwiZ3JvdXBDb2RlIjoiMDAwMDExMTAxMCIsIm1hcHBpbmdQYXRoIjoieHpsaWIifQ.XU-_oQVHoNKpnxLvObkXoxD9v-xcmt837rekEUGExgREboL7B3XSAUFTGQUCTU2IBl_eo5cv-diQyPTFp9sVTT1_RpSsq7ZaJrj6jPzQLMrfp5pBAgc_LlG6PgMeXfQHHI-U5v7HOzITV61c69jsjP9Rf3RqisVPWFxIRw0eGLF0X-ZyehJaNyoU85U1YV8Mer9Ib-yQQEiG3SoIlI4eLdDJ6gNl5LKNDGoVJfdWvIJ4rcp4SqSa8N2ZNt0eyvgNjM-u5iAWpxNMZcZI7RqGUcriM3uNT6r2euaDiLmq1Ty_3NUU5_CQdf2jeicREIXHphrFxNqdwM2dcDitlUvJvg";
         Response<String> response = Requests.post("https://open.libstar.cn/fu/loa/bookInfo/searchNewBook")
-                .bearer(token)
+                .bearerAuth(token)
                 .headers(Collections.singletonMap("Content-Type", "application/json"))
                 .jsonBody(JSONObject.parse("{ \n" +
                         "\t\"days\":200,\n" +
